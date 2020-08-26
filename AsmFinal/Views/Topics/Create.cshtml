@@ -1,0 +1,23 @@
+﻿@model AsmFinal.ViewModel.TopicCourseViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Topics</h2>
+
+@using (Html.BeginForm("Create", "Topics", FormMethod.Post))
+{
+
+    
+    @Html.LabelFor(p => p.Topic.Name)
+    @Html.TextBoxFor(p => p.Topic.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Topic.Name)
+    @Html.LabelFor(p => p.Topic.Detail)
+    @Html.TextBoxFor(p => p.Topic.Detail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Topic.Detail)
+    @Html.LabelFor(p => p.Topic.Course.Name)
+    @Html.DropDownListFor(p => p.Topic.CourseId, new SelectList(Model.Courses, "Id", "Name"), "Select Course Name",
+        new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn-primary" />
+}

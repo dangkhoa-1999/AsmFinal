@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AsmFinal.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Create New", "Create")
+<table class="table">
+    <td width="200">Id</td>
+    <td width="200">Category Name</td>
+    <td></td>
+
+</table>
+
+@foreach (var p in Model)
+{
+    <table class="table">
+        <td width="200">@p.Id</td>
+        <td width="200">@p.Name</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = p.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = p.Id })
+        </td>
+
+    </table>
+}
+
+
+
+

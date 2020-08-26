@@ -1,0 +1,17 @@
+﻿@model AsmFinal.ViewModel.TrainerTopicViewModel
+@{
+    ViewBag.Title = "Assign";
+}
+
+<h2>Assign</h2>
+
+@using (Html.BeginForm("Assign", "Trainers", FormMethod.Post))
+{
+    
+
+    @Html.DropDownListFor(p => p.Trainer.Topics, new SelectList(Model.Topics, "Id", "Name"), "Select Topic Name",
+        new { @class = "form-control" })
+
+
+    <input type="submit" value="Submit" class="btn-primary" />
+}

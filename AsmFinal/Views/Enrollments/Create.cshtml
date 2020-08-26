@@ -1,0 +1,24 @@
+﻿@model AsmFinal.ViewModel.EnrollmentCourseViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Topics</h2>
+
+@using (Html.BeginForm("Create", "Enrollments", FormMethod.Post))
+{
+
+   
+    @Html.LabelFor(p => p.Enrollment.EnrollmentDateStarted)
+    @Html.TextBoxFor(p => p.Enrollment.EnrollmentDateStarted, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Enrollment.EnrollmentDateStarted)
+    @Html.LabelFor(p => p.Enrollment.EnrollmentDateExpired)
+    @Html.TextBoxFor(p => p.Enrollment.EnrollmentDateExpired, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Enrollment.EnrollmentDateExpired)
+    @Html.LabelFor(p => p.Enrollment.Course.Name)
+    @Html.DropDownListFor(p => p.Enrollment.CourseId, new SelectList(Model.Courses, "Id", "Name"), "Select Course Name",
+        new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn-primary" />
+}
+

@@ -1,0 +1,21 @@
+﻿@model AsmFinal.ViewModel.EnrollmentCourseViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Course</h2>
+
+@using (Html.BeginForm("Edit", "Topics", FormMethod.Post))
+{
+    @Html.HiddenFor(p => p.Enrollment.Id)
+    @Html.LabelFor(p => p.Enrollment.EnrollmentDateStarted)
+    @Html.EditorFor(p => p.Enrollment.EnrollmentDateStarted, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Enrollment.EnrollmentDateStarted)
+    @Html.LabelFor(p => p.Enrollment.EnrollmentDateExpired)
+    @Html.EditorFor(p => p.Enrollment.EnrollmentDateExpired, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Enrollment.EnrollmentDateExpired)
+    @Html.LabelFor(p => p.Enrollment.Course.Name)
+    @Html.DropDownListFor(p => p.Enrollment.CourseId, new SelectList(Model.Courses, "Id", "Name"), "Select Category Name",
+        new { @class = "form-control" })
+    <input type="submit" value="Submit" class="btn-primary" />
+}

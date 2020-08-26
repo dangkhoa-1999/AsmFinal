@@ -1,0 +1,22 @@
+﻿@model AsmFinal.ViewModel.CourseCategoryViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Course</h2>
+
+@using (Html.BeginForm("Edit", "Courses", FormMethod.Post))
+{
+    @Html.HiddenFor(p => p.Course.Id)
+    @Html.LabelFor(p => p.Course.Name)
+    @Html.EditorFor(p => p.Course.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Course.Name)
+    @Html.LabelFor(p => p.Course.Detail)
+    @Html.EditorFor(p => p.Course.Detail, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Course.Detail)
+    @Html.LabelFor(p => p.Course.Category.Name)
+    @Html.DropDownListFor(p => p.Course.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Category Name",
+        new { @class = "form-control" })
+    <input type="submit" value="Submit" class="btn-primary" />
+}

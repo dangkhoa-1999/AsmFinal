@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AsmFinal.Models.Topic>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> Course</h2>
+@Html.ActionLink("Create New", "Create")
+<table class="table">
+
+    <td width="200"><b>TopicName</b></td>
+    <td width="200"><b>Detail</b></td>
+    <td width="200"><b>Course Name</b></td>
+    <td></td>
+</table>
+@foreach (var p in Model)
+{
+    <table class="table">
+
+        <td class="alignCenter" width="200">@p.Name</td>
+        <td class="alignCenter" width="200">@p.Detail</td>
+        <td class="alignCenter" width="200">@p.Course.Name</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = p.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = p.Id })
+        </td>
+
+    </table>
+
+}
