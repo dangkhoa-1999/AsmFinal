@@ -7,13 +7,13 @@ namespace AsmFinal.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class f10 : IMigrationMetadata
+    public sealed partial class xa1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(f10));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(xa1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008250413595_f10"; }
+            get { return "202008300810149_xa1"; }
         }
         
         string IMigrationMetadata.Source

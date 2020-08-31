@@ -8,7 +8,8 @@ namespace AsmFinal.ViewModel
 {
     public class TrainerTopicViewModel
     {
+        public TrainerTopic TrainerTopic { get; set; }
+        public IEnumerable<ApplicationUser> Trainers { get; set; }
         public IEnumerable<Topic> Topics { get; set; }
-        public ApplicationUser Trainer { get; set; }
     }
 }

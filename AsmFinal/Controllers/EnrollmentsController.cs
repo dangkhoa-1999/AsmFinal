@@ -9,6 +9,7 @@ using AsmFinal.ViewModel;
 
 namespace AsmFinal.Controllers
 {
+    [Authorize(Roles = "Staff,Trainee")]
     public class EnrollmentsController : Controller
     {
         private ApplicationDbContext _context;

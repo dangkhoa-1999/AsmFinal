@@ -6,9 +6,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using AsmFinal.ViewModel;
+using Microsoft.AspNet.Identity;
 
 namespace AsmFinal.Controllers
 {
+    [Authorize(Roles = "Staff,Trainer")]
     public class TopicsController : Controller
     {
         private ApplicationDbContext _context;
@@ -21,7 +23,10 @@ namespace AsmFinal.Controllers
         public ActionResult Index()
         {
             var list = _context.Topics.Include(p => p.Course).ToList();
+            
+            
             return View(list);
+
         }
         [HttpGet]
         public ActionResult Create()

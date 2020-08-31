@@ -19,7 +19,7 @@ namespace AsmFinal.Models
             return userIdentity;
 
         }
-        public int UserId { get; set; }
+        
         
         
     }
@@ -34,7 +34,8 @@ namespace AsmFinal.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
-        
+        public DbSet<TrainerTopic> TrainerTopics { get; set; }
+        public DbSet<TraineeEnrollment> TraineeEnrollments { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
        

@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2> Enrollment</h2>
+
 <table class="table">
     <td><b>Id</b></td>
     <td><b>User name</b></td>
@@ -17,13 +17,13 @@
     if (p.Role.Contains("Trainee"))
     {
         <table class="table">
-            <td width="100">@p.Id</td>
-            <td width="440">@p.Username</td>
-            <td width="270">@p.Email</td>
+            <td width="125">@p.Id</td>
+            <td width="390">@p.Username</td>
+            <td width="250">@p.Email</td>
             <td>@p.Role</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", "Users", new { id = p.Id }) |
-                @Html.ActionLink("assign Trainer to Topic", "Assign", "Trainer", new { User = p.Username })
+                @Html.ActionLink("assign Trainee to Course", "Assign", "Trainer", new { User = p.Username })
             </td>
         </table>
     }

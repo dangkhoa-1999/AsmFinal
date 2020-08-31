@@ -3,11 +3,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit Course</h2>
+<h2>Edit </h2>
 
 @using (Html.BeginForm("Edit", "Topics", FormMethod.Post))
 {
     @Html.HiddenFor(p => p.Enrollment.Id)
+    @Html.LabelFor(p => p.Enrollment.Name)
+    @Html.EditorFor(p => p.Enrollment.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Enrollment.Name)
     @Html.LabelFor(p => p.Enrollment.EnrollmentDateStarted)
     @Html.EditorFor(p => p.Enrollment.EnrollmentDateStarted, new { htmlAttributes = new { @class = "form-control" } })
     @Html.ValidationMessageFor(p => p.Enrollment.EnrollmentDateStarted)

@@ -8,8 +8,8 @@ using System.Web.Mvc;
 
 namespace AsmFinal.Controllers
 {
-    
-        public class CategoriesController : Controller
+    [Authorize(Roles = "Staff")]
+    public class CategoriesController : Controller
 
         {
             private ApplicationDbContext _context;

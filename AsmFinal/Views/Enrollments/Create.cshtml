@@ -3,12 +3,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create Topics</h2>
+<h2>Create </h2>
 
 @using (Html.BeginForm("Create", "Enrollments", FormMethod.Post))
 {
+    @Html.LabelFor(p => p.Enrollment.Name)
+    @Html.TextBoxFor(p => p.Enrollment.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Enrollment.Name)
 
-   
     @Html.LabelFor(p => p.Enrollment.EnrollmentDateStarted)
     @Html.TextBoxFor(p => p.Enrollment.EnrollmentDateStarted, new { @class = "form-control" })
     @Html.ValidationMessageFor(p => p.Enrollment.EnrollmentDateStarted)

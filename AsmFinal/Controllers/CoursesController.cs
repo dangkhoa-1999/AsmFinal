@@ -9,6 +9,7 @@ using System.Data.Entity;
 
 namespace AsmFinal.Controllers
 {
+    [Authorize(Roles = "Staff")]
     public class CoursesController : Controller
     {
         private ApplicationDbContext _context;

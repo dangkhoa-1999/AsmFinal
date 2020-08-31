@@ -146,10 +146,10 @@ namespace AsmFinal.Controllers
         {
             if (Request.IsAuthenticated && User.IsInRole("Staff"))
             {
-                ViewBag.Name = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Admin") && !u.Name.Contains("Trainee")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Admin") && !u.Name.Contains("Trainer") && !u.Name.Contains("Staff")).ToList(), "Name", "Name");
                 return View();
             }
-                ViewBag.Name = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Admin") && !u.Name.Contains("Trainee") )
+                ViewBag.Name = new SelectList(_context.Roles.Where(u=> !u.Name.Contains("Trainee") && !u.Name.Contains("Admin"))
                            .ToList(), "Name", "Name");
             return View();
         }
@@ -177,13 +177,7 @@ namespace AsmFinal.Controllers
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     return RedirectToAction("Index", "Users");
                 }
-                if (Request.IsAuthenticated && User.IsInRole("Staff"))
-                {
-                    ViewBag.Name = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Staff") && !u.Name.Contains("Admin") && !u.Name.Contains("Trainer"))
-                                 .ToList(), "Name", "Name"); 
-                    AddErrors(result);
-
-                }
+                
                 ViewBag.Name = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Staff") &&  !u.Name.Contains("Trainer"))
                                .ToList(), "Name", "Name");
                 AddErrors(result);

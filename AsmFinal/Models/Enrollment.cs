@@ -12,7 +12,7 @@ namespace AsmFinal.Models
         [Key]
         public int Id { get; set; }
         
-       
+       public string Name { get; set; }
         public DateTime EnrollmentDateStarted { get; set; }
         public DateTime EnrollmentDateExpired { get; set; }
         

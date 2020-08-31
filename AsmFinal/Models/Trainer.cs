@@ -17,7 +17,7 @@ namespace AsmFinal.Models
         public string TrainerEmail { get; set; }
         [DisplayName("Trainer Major")]
         public string TrainerMajor { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
-        public string TrainerId { get; set; }
+        public Topic Topic { get; set; }
+        public int TopicId { get; set; }
     }
 }
