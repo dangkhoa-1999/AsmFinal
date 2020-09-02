@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using AsmFinal.ViewModel;
+using System.Net;
 
 namespace AsmFinal.Controllers
 {
@@ -61,6 +62,9 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Create(TrainerTopicViewModel model)
         {
+            
+
+
             //get trainer
             var role = (from r in _context.Roles where r.Name.Contains("Trainer") select r).FirstOrDefault();
             var users = _context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id)).ToList();
@@ -68,7 +72,10 @@ namespace AsmFinal.Controllers
             //get topic
 
             var topics = _context.Topics.ToList();
-
+            if (!ModelState.IsValid) 
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "naughty");
+            }
 
             if (ModelState.IsValid)
             {
@@ -76,6 +83,7 @@ namespace AsmFinal.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
 
             var TrainerTopicVM = new TrainerTopicViewModel()
             {
@@ -86,5 +94,20 @@ namespace AsmFinal.Controllers
 
             return View(TrainerTopicVM);
         }
+        public ActionResult Delete(int id)
+        {
+            var productInDb = _context.TrainerTopics.SingleOrDefault(p => p.Id == id);
+
+            if (productInDb == null)
+            {
+                return HttpNotFound();
+            }
+
+            _context.TrainerTopics.Remove(productInDb);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+       
     }
 }

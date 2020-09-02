@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AsmFinal.Models
 {
@@ -11,8 +12,9 @@ namespace AsmFinal.Models
     {
         [Key]
         public int Id { get; set; }
-        
-       public string Name { get; set; }
+        [Remote("IsProductNameExist", "Enrollment", AdditionalFields = "Id",
+                ErrorMessage = "Enrollment name already exists")]
+        public string Name { get; set; }
         public DateTime EnrollmentDateStarted { get; set; }
         public DateTime EnrollmentDateExpired { get; set; }
         

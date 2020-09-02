@@ -39,6 +39,12 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Create(Topic topic)
         {
+            bool IsProductNameExist = _context.Topics.Any
+                   (x => x.Name == topic.Name && x.Id != topic.Id);
+            if (IsProductNameExist == true)
+            {
+                ModelState.AddModelError("Name", "Topic Name already exists");
+            }
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Create");
@@ -81,6 +87,12 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Edit(Topic topic)
         {
+            bool IsProductNameExist = _context.Topics.Any
+                              (x => x.Name == topic.Name && x.Id != topic.Id);
+            if (IsProductNameExist == true)
+            {
+                ModelState.AddModelError("Name", "Topic Name already exists");
+            }
             var CourseInDb = _context.Topics.SingleOrDefault(m => m.Id == topic.Id);
             CourseInDb.Name = topic.Name;
             CourseInDb.Detail = topic.Detail;
@@ -88,6 +100,19 @@ namespace AsmFinal.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public JsonResult IsProductNameExist(string ProductName, int? Id)
+        {
+            var validateName = _context.Topics.FirstOrDefault
+                                (x => x.Name == ProductName && x.Id != Id);
+            if (validateName != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

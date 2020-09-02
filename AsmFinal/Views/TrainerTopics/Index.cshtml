@@ -30,6 +30,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Topic.Name)
                 </td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
             </tr>
         }
 

@@ -35,6 +35,12 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Create(Enrollment enrollment)
         {
+            bool IsProductNameExist = _context.Enrollments.Any
+                    (x => x.Name == enrollment.Name && x.Id != enrollment.Id);
+            if (IsProductNameExist == true)
+            {
+                ModelState.AddModelError("Name", "Enrollment Name already exists");
+            }
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Create");
@@ -77,6 +83,12 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Edit(Enrollment enrollment)
         {
+            bool IsProductNameExist = _context.Enrollments.Any
+                               (x => x.Name == enrollment.Name && x.Id != enrollment.Id);
+            if (IsProductNameExist == true)
+            {
+                ModelState.AddModelError("Name", "Enrollment Name already exists");
+            }
             var CourseInDb = _context.Enrollments.SingleOrDefault(m => m.Id == enrollment.Id);
             CourseInDb.EnrollmentDateExpired = enrollment.EnrollmentDateExpired;
             CourseInDb.EnrollmentDateStarted = enrollment.EnrollmentDateStarted;
@@ -84,6 +96,19 @@ namespace AsmFinal.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public JsonResult IsProductNameExist(string ProductName, int? Id)
+        {
+            var validateName = _context.Enrollments.FirstOrDefault
+                                (x => x.Name == ProductName && x.Id != Id);
+            if (validateName != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

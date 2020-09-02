@@ -8,9 +8,13 @@
 
 @using (Html.BeginForm("Edit", "Categories", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(p => p.Id)
     @Html.LabelFor(p => p.Name)
     @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control" } })
     @Html.ValidationMessageFor(p => p.Name)
     <input type="submit" value="Submit" class="btn-primary" />
 }
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

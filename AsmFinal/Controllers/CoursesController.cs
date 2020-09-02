@@ -35,6 +35,12 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Create(Course course)
         {
+            bool IsCourseNameExist = _context.Courses.Any
+                   (x => x.Name == course.Name && x.Id != course.Id);
+            if (IsCourseNameExist == true)
+            {
+                ModelState.AddModelError("Name", "Course Name already exists");
+            }
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Create");
@@ -61,6 +67,7 @@ namespace AsmFinal.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+
             var CourseInDb = _context.Courses.SingleOrDefault(m => m.Id == id);
             if (CourseInDb == null) return HttpNotFound();
 
@@ -77,6 +84,12 @@ namespace AsmFinal.Controllers
         [HttpPost]
         public ActionResult Edit(Course course)
         {
+            bool IsCourseNameExist = _context.Courses.Any
+                           (x => x.Name == course.Name && x.Id != course.Id);
+            if (IsCourseNameExist == true)
+            {
+                ModelState.AddModelError("Name", "Course Name already exists");
+            }
             var CourseInDb = _context.Courses.SingleOrDefault(m => m.Id == course.Id);
             CourseInDb.Name = course.Name;
             CourseInDb.Detail = course.Detail;
@@ -84,6 +97,19 @@ namespace AsmFinal.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public JsonResult IsCourseNameExist(string ProductName, int? Id)
+        {
+            var validateName = _context.Courses.FirstOrDefault
+                                (x => x.Name == ProductName && x.Id != Id);
+            if (validateName != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }
